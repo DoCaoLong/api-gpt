@@ -26,10 +26,10 @@ app.post("/", async (req, res) => {
     const { prompt } = req.body;
     try {
         const response = await openai.createCompletion({
-            model: "text-davinci-003",
+            model: "text-ada-001",
             prompt: `${prompt}`,
-            temperature: 0.7,
-            max_tokens: 4000,
+            temperature: 1, // 0 -> 1
+            max_tokens: 2048,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
@@ -40,6 +40,12 @@ app.post("/", async (req, res) => {
         });
     } catch (error) {
         res.status(500).send({ error });
+        if (error.response) {
+            console.log(error.response.status);
+            console.log(error.response.data);
+        } else {
+            console.log(error.message);
+        }
     }
 });
 
