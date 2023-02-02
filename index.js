@@ -26,15 +26,15 @@ app.post("/", async (req, res) => {
     const { prompt } = req.body;
     try {
         const response = await openai.createCompletion({
-            model: "text-ada-001",
+            model: "text-davinci-003",
             prompt: `${prompt}`,
-            temperature: 1, // 0 -> 1
-            max_tokens: 2048,
+            temperature: 0.7,
+            max_tokens: 4000,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
         });
-        // await PromiseTimeout(3000);
+        await PromiseTimeout(3000);
         res.status(200).send({
             bot: response.data.choices[0].text,
         });
