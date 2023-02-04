@@ -28,8 +28,8 @@ app.post("/", async (req, res) => {
         const response = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: `${prompt}`,
-            temperature: 0.7,
-            max_tokens: 1000,
+            temperature: 1,
+            max_tokens: 4000,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
@@ -55,4 +55,4 @@ app.post("/", async (req, res) => {
 var server = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
-server.setTimeout(20000);
+server.setTimeout(30000);
