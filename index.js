@@ -34,7 +34,7 @@ app.post("/", async (req, res) => {
             frequency_penalty: 0,
             presence_penalty: 0,
         });
-        await PromiseTimeout(30000);
+        // await PromiseTimeout(30000);
         res.status(200).send({
             bot: response.data.choices[0].text,
         });
@@ -49,11 +49,11 @@ app.post("/", async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
-});
-
-// var server = app.listen(port, () => {
+// app.listen(port, () => {
 //     console.log(`Listening on port ${port}`);
 // });
-// server.setTimeout(30000);
+
+var server = app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+});
+server.setTimeout(30000);
