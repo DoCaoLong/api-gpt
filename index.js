@@ -18,7 +18,7 @@ app.use(express.json());
 
 app.get("/", async (req, res) => {
     res.status(200).send({
-        message: "Hello world",
+        message: "hi, this is custom api from https://openai.com/ ",
     });
 });
 
@@ -29,12 +29,12 @@ app.post("/", async (req, res) => {
             model: "text-davinci-003",
             prompt: `${prompt}`,
             temperature: 1,
-            max_tokens: 4000,
+            max_tokens: 2000,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
         });
-        // await PromiseTimeout(3000);
+        await PromiseTimeout(30000);
         res.status(200).send({
             bot: response.data.choices[0].text,
         });
@@ -49,10 +49,11 @@ app.post("/", async (req, res) => {
     }
 });
 
-// app.listen(port, () => {
-//     console.log(`Listening on port ${port}`);
-// });
-var server = app.listen(port, () => {
+app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
-server.setTimeout(30000);
+
+// var server = app.listen(port, () => {
+//     console.log(`Listening on port ${port}`);
+// });
+// server.setTimeout(30000);
